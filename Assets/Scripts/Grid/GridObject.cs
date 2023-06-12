@@ -39,4 +39,9 @@ public class GridObject
         return $"{gridPosition}\n{unitString}";
     }
 
+    public bool HasAnyUnit()
+    {
+        return unitList.Count > 0;
+    }
+
 }

@@ -6,11 +6,14 @@ public class MoveAction : MonoBehaviour
 {
     private const string IS_WALKING = "IsWalking";
     [SerializeField] private Animator unitAnimator;
+    [SerializeField] private int maxMoveDistance = 4;
 
     private Vector3 targetPosition;
+    private Unit unit;
 
     private void Awake()
     {
+        unit = GetComponent<Unit>();
         targetPosition = transform.position;
     }
 
@@ -34,10 +37,49 @@ public class MoveAction : MonoBehaviour
         }
     }
 
-    public void Move(Vector3 targetPosition)
+    public void Move(GridPosition gridPosition)
     {
-        this.targetPosition = targetPosition;
+        this.targetPosition = LevelGrid.Instance.GetWorldPosition(gridPosition);
     }
 
+    public bool IsValidActionGridPosition(GridPosition gridPosition)
+    {
+        List<GridPosition> validGridPositionList = GetValidActionGridPositionList();
+        return validGridPositionList.Contains(gridPosition);
+    }
+
+    public List<GridPosition> GetValidActionGridPositionList()
+    {
+        List<GridPosition> validGridPositionList = new List<GridPosition>();
+
+        GridPosition unitGridPosition = unit.GetGridPosition();
+
+        for(int x = - maxMoveDistance; x <= maxMoveDistance; x++)
+        {
+            for (int z = -maxMoveDistance; z <= maxMoveDistance; z++)
+            {
+                GridPosition offsetGridPosition = new GridPosition(x, z);
+                GridPosition testGridPosition = unitGridPosition + offsetGridPosition;
+                
+                // is inside the grid
+                if (!LevelGrid.Instance.IsValidGridPosition(testGridPosition))
+                    continue;
+
+                // is not the same as current position
+                if (unitGridPosition == testGridPosition)
+                    continue;
+
+                // grid position ocupied by another unit
+                if(LevelGrid.Instance.HasAnyUnitOnGridPosition(testGridPosition))
+                {
+                    continue;
+                }
+
+                validGridPositionList.Add(testGridPosition);
+            }
+        }
+
+        return validGridPositionList;
+    }
 
 }
