@@ -22,6 +22,11 @@ public class SpinAction : BaseAction
 
     }
 
+    public override string GetActionName()
+    {
+        return "Spin";
+    }
+
     public void Spin(Action onActionComplete)
     {
         this.onActionComplete = onActionComplete;
