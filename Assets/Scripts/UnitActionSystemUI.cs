@@ -33,7 +33,7 @@ public class UnitActionSystemUI : MonoBehaviour
         {
             Transform actionButtonTranform = Instantiate(actionButtonPrefab, actionButtonContainerTransform);
             ActionButtonUI actionButtonUI = actionButtonTranform.GetComponent<ActionButtonUI>();
-            actionButtonUI.SetBaseAction(baseAction);
+            actionButtonUI.SetBaseAction(baseAction); 
         }
     }
 }
