@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class UnitActionSystem : MonoBehaviour
 {
@@ -35,6 +36,10 @@ public class UnitActionSystem : MonoBehaviour
         if (isBusy)
             return;
 
+        if(EventSystem.current.IsPointerOverGameObject())
+        {
+            return;
+        }
         if (TryHandleUnitSelection())
         {
             return;
@@ -76,6 +81,11 @@ public class UnitActionSystem : MonoBehaviour
             {
                 if (raycastHit.transform.TryGetComponent<Unit>(out Unit unit))
                 {
+                    if(selectedUnit == unit)
+                    {
+                        // unit is already selected
+                        return false;
+                    }
                     SetSelectedUnit(unit);
                     return true;
                 }
@@ -101,5 +111,10 @@ public class UnitActionSystem : MonoBehaviour
     public Unit GetSelectedUnit()
     {
         return selectedUnit;
+    }
+
+    public BaseAction GetSelectedAction()
+    {
+        return selectedAction;
     }
 }
