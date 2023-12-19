@@ -8,10 +8,15 @@ public class UnitAnimator : MonoBehaviour
 
     private void Awake()
     {
-        if(TryGetComponent<MoveAction>(out MoveAction moveAction))
+        if (TryGetComponent<MoveAction>(out MoveAction moveAction))
         {
             moveAction.OnStartMoving += MoveAction_OnStartMoving;
             moveAction.OnStopMoving += MoveAction_OnStopMoving;
+        }
+
+        if (TryGetComponent<ShootAction>(out ShootAction shootAction))
+        {
+            shootAction.OnShoot += ShootAction_OnShoot;
         }
     }
 
@@ -23,5 +28,10 @@ public class UnitAnimator : MonoBehaviour
     private void MoveAction_OnStartMoving(object sender, System.EventArgs e)
     {
         animator.SetBool("IsWalking", true);
+    }
+
+    private void ShootAction_OnShoot(object sender, System.EventArgs e)
+    {
+        animator.SetTrigger("Shoot");
     }
 }

@@ -8,6 +8,7 @@ using UnityEngine.UIElements;
 
 public class ShootAction : BaseAction
 {
+    public event EventHandler OnShoot;
     private enum State
     {
         Aiming,
@@ -90,7 +91,7 @@ public class ShootAction : BaseAction
         float aimingStateTime = 1f;
         stateTimer = aimingStateTime;
 
-        canShootBullet = true;
+        canShootBullet = true;        
     }
 
     public override List<GridPosition> GetValidActionGridPositionList()
@@ -140,6 +141,7 @@ public class ShootAction : BaseAction
 
     private void Shoot()
     {
+        OnShoot?.Invoke(this, EventArgs.Empty);
         targetUnit.Damage();
     }
 }
