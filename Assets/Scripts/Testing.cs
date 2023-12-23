@@ -16,7 +16,7 @@ public class Testing : MonoBehaviour
         {
             List<GridPosition> validGridPositionList = unit.GetComponent<MoveAction>().GetValidActionGridPositionList();
             GridSystemVisual.Instance.HideAllGridPositions();
-            GridSystemVisual.Instance.ShowGridPositionList(validGridPositionList);
+            GridSystemVisual.Instance.ShowGridPositionList(validGridPositionList, GridSystemVisual.GridVisualType.White);
         }
     }
 }
