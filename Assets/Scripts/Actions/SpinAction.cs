@@ -30,7 +30,7 @@ public class SpinAction : BaseAction
     public override void TakeAction(GridPosition gridPostion, Action onActionComplete)
     {
         totalSpinAmount = 0f;
-        
+
         ActionStart(onActionComplete);
     }
 
@@ -46,5 +46,14 @@ public class SpinAction : BaseAction
     public override int GetActionPointCost()
     {
         return 1;
+    }
+
+    public override EnemyAIAction GetEnemyAIAction(GridPosition gridPosition)
+    {
+        return new EnemyAIAction
+        {
+            gridPosition = gridPosition,
+            actionValue = 0
+        };
     }
 }

@@ -1113,6 +1113,11 @@ PrefabInstance:
       propertyPath: maxMoveDistance
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 8541182005300186166, guid: 8157ad96acb66d045ac51274bdd325ee,
+        type: 3}
+      propertyPath: health
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2537,7 +2542,7 @@ PrefabInstance:
     - target: {fileID: 4687980957548017190, guid: debec21c81cf5e04ebe8c056a897365d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 4687980957548017190, guid: debec21c81cf5e04ebe8c056a897365d,
         type: 3}
@@ -2547,7 +2552,7 @@ PrefabInstance:
     - target: {fileID: 4687980957548017190, guid: debec21c81cf5e04ebe8c056a897365d,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4687980957548017190, guid: debec21c81cf5e04ebe8c056a897365d,
         type: 3}
@@ -3387,6 +3392,11 @@ PrefabInstance:
         type: 3}
       propertyPath: maxMoveDistance
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8541182005300186166, guid: 8157ad96acb66d045ac51274bdd325ee,
+        type: 3}
+      propertyPath: health
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
