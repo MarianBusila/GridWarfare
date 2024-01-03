@@ -5,15 +5,15 @@ using UnityEngine;
 
 public class GridDebugObject : MonoBehaviour
 {
-    private GridObject gridObject;
+    private object gridObject;
     [SerializeField] private TextMeshPro textDebug;
 
-    public void SetGridObject(GridObject gridObject)
+    public virtual void SetGridObject(object gridObject)
     {
         this.gridObject = gridObject;        
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         textDebug.text = gridObject.ToString();
     }
