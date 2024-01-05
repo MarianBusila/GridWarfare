@@ -14,9 +14,16 @@ public class Testing : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.T))
         {
-            List<GridPosition> validGridPositionList = unit.GetComponent<MoveAction>().GetValidActionGridPositionList();
-            GridSystemVisual.Instance.HideAllGridPositions();
-            GridSystemVisual.Instance.ShowGridPositionList(validGridPositionList, GridSystemVisual.GridVisualType.White);
+            GridPosition mouseGridPosition = LevelGrid.Instance.GetGridPosition(MouseWorld.GetPosition());
+            GridPosition startGridPosition = new GridPosition(0, 0);
+            
+            var gridPositionList = Pathfinding.Instance.FindPath(startGridPosition, mouseGridPosition);
+            for(int i = 0 ; i < gridPositionList.Count - 1 ; i++)
+            {
+                Debug.DrawLine(LevelGrid.Instance.GetWorldPosition(gridPositionList[i]), LevelGrid.Instance.GetWorldPosition(gridPositionList[i + 1]), Color.white, 10f);
+            }
+            
+            
         }
     }
 }
