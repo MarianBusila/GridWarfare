@@ -23,6 +23,8 @@ public class ShootAction : BaseAction
         CoolOff
     }
 
+    [SerializeField] private LayerMask obstacleLayerMask;
+    
     private State state;
     private int maxShootDistance = 7;
     private float stateTimer;
@@ -137,6 +139,15 @@ public class ShootAction : BaseAction
                 if(targetUnit.IsEnemy() == unit.IsEnemy())
                 {
                     // both units on same team
+                    continue;
+                }
+                
+                float unitShoulderHeight = 1.7f;
+                Vector3 unitWorldPosition = LevelGrid.Instance.GetWorldPosition(unitGridPosition);
+                Vector3 shootDir = (targetUnit.GetWorldPosition() - unitWorldPosition).normalized;
+                if (Physics.Raycast(unit.GetWorldPosition() + Vector3.up * unitShoulderHeight, shootDir, Vector3.Distance(unitWorldPosition, targetUnit.GetWorldPosition()), obstacleLayerMask))
+                {
+                    // obstacle in the way
                     continue;
                 }
 
