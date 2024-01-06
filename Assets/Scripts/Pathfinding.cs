@@ -38,7 +38,7 @@ public class Pathfinding : MonoBehaviour
         
         gridSystem = new GridSystem<PathNode>(width, height, cellSize,
             (GridSystem<PathNode> gridSystem, GridPosition gridPosition) => new PathNode(gridPosition));
-        gridSystem.CreateDebugObjects(gridDebugObjectPrefab);
+        // gridSystem.CreateDebugObjects(gridDebugObjectPrefab);
 
         // set walkable to false for positions with obstacles
         for (int x = 0; x < this.width; x++)
