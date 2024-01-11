@@ -9,7 +9,7 @@ public class Unit : MonoBehaviour
     public static event EventHandler OnAnyUnitSpawned;
     public static event EventHandler OnAnyUnitDead;
 
-    private const int ACTION_POINTS_MAX = 2;
+    private const int ACTION_POINTS_MAX = 9;
 
     [SerializeField] private bool isEnemy;
     
