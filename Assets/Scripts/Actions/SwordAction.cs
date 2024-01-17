@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class SwordAction : BaseAction
 {
+    public static event EventHandler OnAnySwordHit;
+    public event EventHandler OnSwordActionStarted;
+    public event EventHandler OnSwordActionCompleted;
     private enum State
     {
         SwingingSwordBeforeHit,
@@ -50,8 +53,10 @@ public class SwordAction : BaseAction
                 float afterHitStateTime = 0.1f;
                 stateTimer = afterHitStateTime;
                 targetUnit.Damage(100);
+                OnAnySwordHit?.Invoke(this, EventArgs.Empty);
                 break;
             case State.SwingingSwordAfterHit:
+                OnSwordActionCompleted?.Invoke(this, EventArgs.Empty);
                 ActionComplete();
                 break;
         }
@@ -70,6 +75,7 @@ public class SwordAction : BaseAction
         float beforeHitStateTime = 0.7f;
         stateTimer = beforeHitStateTime;
         
+        OnSwordActionStarted?.Invoke(this, EventArgs.Empty);
         ActionStart(onActionComplete);
     }
 
